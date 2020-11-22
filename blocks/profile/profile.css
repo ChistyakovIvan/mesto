@@ -9,11 +9,11 @@
 	align-items: center;
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1024px) {
 	.profile {
 		width: 880px;
 		flex-direction: row;
-    padding-top: 40px;
-    justify-content: space-between;
+		padding-top: 40px;
+		justify-content: space-between;
 	}
 }
