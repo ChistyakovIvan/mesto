@@ -4,6 +4,8 @@
 	height: 50px;
 	background-size: contain;
 	background-repeat: no-repeat;
+	background-color: #000000;
+	border: none;
 }
 
 .profile__add-button:hover {
