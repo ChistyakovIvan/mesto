@@ -11,6 +11,10 @@
 	background-color: transparent;
 }
 
+.popup__submit-button:hover {
+	opacity: 0.8;
+}
+
 @media screen and (min-width: 1024px) {
 	.popup__submit-button {
 		background-image: url(../../../images/Submit\ Button\ Size\ L.png);
