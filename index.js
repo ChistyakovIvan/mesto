@@ -41,4 +41,3 @@ likeButtonNode.addEventListener("click", handleLikeButtonClick);
 function handleLikeButtonClick() {
 	likeButtonNode.classList.toggle("element__heart-icon_active");
 }
-
