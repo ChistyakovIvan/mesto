@@ -4,8 +4,10 @@ const formNode = document.querySelector(".popup__form");
 const popupCloseButtonNode = document.querySelector(".popup__close-button");
 const profileNameNode = document.querySelector(".profile__name");
 const profileDescriptionNode = document.querySelector(".profile__description");
-let popupNameInput = document.querySelector(".popup__input_name");
-let popupDescriptionInput = document.querySelector(".popup__input_description");
+let popupNameInput = document.querySelector(".popup__form-item_name");
+let popupDescriptionInput = document.querySelector(
+	".popup__form-item_description"
+);
 
 editButtonNode.addEventListener("click", handleEditButtonClick);
 
@@ -32,7 +34,6 @@ function handleFormSubmit(event) {
 }
 
 const likeButtonNode = document.querySelector(".element__heart-icon");
-console.log(likeButtonNode);
 
 likeButtonNode.addEventListener("click", handleLikeButtonClick);
 
