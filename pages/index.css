@@ -12,7 +12,6 @@
 @import url("../blocks/element/__likes-counter/element__likes-counter.css");
 @import url("../blocks/element/__heart-icon/element__heart-icon.css");
 @import url("../blocks/element/__heart-icon/_active/element__heart-icon_active.css");
-@import url("../blocks/element/__heart-icon/_disabled/element__heart-icon_disabled.css");
 @import url("../blocks/profile/profile.css");
 @import url("../blocks/profile/__avatar/profile__avatar.css");
 @import url("../blocks/profile/__text/profile__text.css");
