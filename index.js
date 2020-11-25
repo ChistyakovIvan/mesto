@@ -4,9 +4,9 @@ const formNode = document.querySelector(".popup__form");
 const popupCloseButtonNode = document.querySelector(".popup__close-button");
 const profileNameNode = document.querySelector(".profile__name");
 const profileDescriptionNode = document.querySelector(".profile__description");
-let popupNameInput = document.querySelector(".popup__form-item_name");
+let popupNameInput = document.querySelector(".popup__form-item_value_name");
 let popupDescriptionInput = document.querySelector(
-	".popup__form-item_description"
+	".popup__form-item_value_description"
 );
 
 editButtonNode.addEventListener("click", handleEditButtonClick);

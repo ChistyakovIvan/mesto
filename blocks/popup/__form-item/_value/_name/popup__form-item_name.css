@@ -1,4 +1,4 @@
-.popup__form-item_name {
+.popup__form-item_value_name {
 	border: none;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	margin: 0 auto 30px;
@@ -7,7 +7,7 @@
 	padding-bottom: 13px;
 }
 
-.popup__form-item_name::placeholder {
+.popup__form-item_value_name::placeholder {
 	color: #000000;
 	font-family: "Inter";
 	font-weight: 400;
@@ -17,7 +17,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-	.popup__form-item_name {
+	.popup__form-item_value_name {
 		width: 358px;
 	}
 }
