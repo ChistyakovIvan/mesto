@@ -19,6 +19,9 @@ function handleCloseButtonClick() {
 	popupNode.classList.remove("popup_visible");
 }
 
+popupNameInput.value = profileNameNode.textContent;
+popupDescriptionInput.value = profileDescriptionNode.textContent;
+
 formNode.addEventListener("submit", handleFormSubmit);
 
 function handleFormSubmit(event) {
