@@ -1,12 +1,16 @@
 .popup__window {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	width: 282px;
+	border: 1px solid rgba(0, 0, 0, 1);
+	border-radius: 10px;
+	background-color: #ffffff;
+	margin: 0 auto;
+	box-sizing: border-box;
+	margin-top: 130px;
+	position: relative;
 }
 
 @media screen and (min-width: 1024px) {
-  .popup__window {
-    display: block;
-  }
+	.popup__window {
+		width: 430px;
+	}
 }

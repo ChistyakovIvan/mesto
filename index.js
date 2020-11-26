@@ -32,13 +32,3 @@ function handleFormSubmit(event) {
 	profileDescriptionNode.textContent = popupDescriptionInput.value;
 	popupNode.classList.remove("popup_visible");
 }
-
-const likeButtonNode = document.querySelector(".element__heart-icon");
-
-likeButtonNode.addEventListener("click", handleLikeButtonClick);
-
-/* Требуется ли в на данном этапе добавление forEach, чтобы лайк нажимался для всех элементов? */
-
-function handleLikeButtonClick() {
-	likeButtonNode.classList.toggle("element__heart-icon_active");
-}
