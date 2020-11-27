@@ -9,22 +9,19 @@ let popupDescriptionInput = document.querySelector(
 	".popup__form-item_value_description"
 );
 
-editButtonNode.addEventListener("click", handleEditButtonClick);
-
 function handleEditButtonClick() {
 	popupNode.classList.add("popup_visible");
+	popupNameInput.value = profileNameNode.textContent;
+	popupDescriptionInput.value = profileDescriptionNode.textContent;
 }
 
-popupCloseButtonNode.addEventListener("click", handleCloseButtonClick);
+editButtonNode.addEventListener("click", handleEditButtonClick);
 
 function handleCloseButtonClick() {
 	popupNode.classList.remove("popup_visible");
 }
 
-popupNameInput.value = profileNameNode.textContent;
-popupDescriptionInput.value = profileDescriptionNode.textContent;
-
-formNode.addEventListener("submit", handleFormSubmit);
+popupCloseButtonNode.addEventListener("click", handleCloseButtonClick);
 
 function handleFormSubmit(event) {
 	event.preventDefault();
@@ -32,3 +29,5 @@ function handleFormSubmit(event) {
 	profileDescriptionNode.textContent = popupDescriptionInput.value;
 	popupNode.classList.remove("popup_visible");
 }
+
+formNode.addEventListener("submit", handleFormSubmit);
