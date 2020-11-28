@@ -1,5 +1,4 @@
 .profile__info {
-	padding-top: 26px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -7,7 +6,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .profile__info {
+	.profile__info {
     flex-direction: row;
-  }
+	}
 }
