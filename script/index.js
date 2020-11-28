@@ -27,7 +27,7 @@ function handleFormSubmit(event) {
 	event.preventDefault();
 	profileNameNode.textContent = popupNameInput.value;
 	profileDescriptionNode.textContent = popupDescriptionInput.value;
-	popupNode.classList.remove("popup_visible");
+	handleCloseButtonClick();
 }
 
 formNode.addEventListener("submit", handleFormSubmit);
