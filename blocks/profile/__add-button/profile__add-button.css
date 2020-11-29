@@ -8,6 +8,10 @@
 	border-radius: 2px;
 	box-sizing: border-box;
 	font-size: 22px;
+	background-image: url(../../../images/Plus_icon.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 16px;
 }
 
 .profile__add-button:hover {
@@ -22,5 +26,6 @@
 		font-size: 40px;
 		font-style: normal;
 		font-weight: 400;
+		background-size: 22px;
 	}
 }
