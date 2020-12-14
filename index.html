@@ -33,10 +33,10 @@
 								<p class="profile__description">Исследователь океана</p>
 							</div>
 						</div>
-						<button type="button" class="profile__add-button"></button>
 					</section>
 
 					<section class="elements">
+            <button type="button" class="element__add-button"></button>
 						<div class="element">
 							<img
 								src="images/Karachaevo.png"
@@ -111,11 +111,11 @@
 			</div>
 		</div>
 
-		<div class="popup">
+		<div class="popup" id="profile__editor">
 			<div class="popup__window">
-				<button type="button" class="popup__close-button"></button>
+				<button type="button" class="popup__close-button" id="profile__editor_close-button"></button>
 				<h3 class="popup__heading">Редактировать профиль</h3>
-				<form class="popup__form" name="popup__form">
+				<form class="popup__form" name="profile__editor">
 					<input
 						class="popup__form-item popup__form-item_value_name"
 						name="Name"
@@ -133,7 +133,34 @@
 					<button class="popup__submit-button" type="submit">Сохранить</button>
 				</form>
 			</div>
-		</div>
+    </div>
+
+
+
+    <div class="popup" id="place__editor">
+			<div class="popup__window">
+				<button type="button" class="popup__close-button" id="place__editor_close-button"></button>
+				<h3 class="popup__heading">Новое место</h3>
+				<form class="popup__form" name="element__editor">
+					<input
+						class="popup__form-item popup__form-item_value_place-name"
+						name="Name"
+						type="text"
+						placeholder="Название"
+						required
+					/>
+					<input
+						class="popup__form-item popup__form-item_value_place-url"
+						name="Url"
+						type="url"
+						placeholder="Ссылка на картинку"
+						required
+					/>
+					<button class="popup__submit-button" type="submit">Создать</button>
+				</form>
+			</div>
+    </div>
+
 
 		<script src="script/index.js"></script>
 	</body>
