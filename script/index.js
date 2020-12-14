@@ -60,6 +60,14 @@ function handlePlaceEditorCloseButtonClick() {
 	popupPlaceEditorNode.classList.remove("popup_visible");
 }
 
+const heartIconNodes = document.querySelectorAll(".element__heart-icon");
+
+heartIconNodes.forEach(function (element) {
+	element.addEventListener("click", (evt) => {
+		const heartTarget = evt.target;
+		heartTarget.classList.toggle("element__heart-icon_active");
+	});
+});
 /* const initialCards = [
 	{
 		name: "Архыз",
