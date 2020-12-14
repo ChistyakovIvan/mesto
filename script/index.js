@@ -16,7 +16,7 @@ const popupPlaceNameNode = document.querySelector(
 const popupPlaceUrlNode = document.querySelector(
 	".popup__form-item_value_place-url"
 );
-const addButtonNode = document.querySelector(".element__add-button");
+const addButtonNode = document.getElementById("element__add-button");
 const popupPlaceEditorNode = document.getElementById("place__editor");
 const placeEditorCloseButtonNode = document.getElementById(
 	"place__editor_close-button"
@@ -64,8 +64,8 @@ const heartIconNodes = document.querySelectorAll(".element__heart-icon");
 
 heartIconNodes.forEach(function (element) {
 	element.addEventListener("click", (evt) => {
-		const heartTarget = evt.target;
-		heartTarget.classList.toggle("element__heart-icon_active");
+		const ChosenHeartIcon = evt.target;
+		ChosenHeartIcon.classList.toggle("element__heart-icon_active");
 	});
 });
 /* const initialCards = [
