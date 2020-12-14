@@ -1,5 +1,5 @@
 const editButtonNode = document.querySelector(".profile__edit-button");
-const popupNode = document.getElementById("profile__editor");
+const popupNode = document.getElementById("profile-editor");
 const formNode = document.querySelector(".popup__form");
 const popupCloseButtonNode = document.getElementById(
 	"profile__editor_close-button"
@@ -17,7 +17,7 @@ const popupPlaceUrlNode = document.querySelector(
 	".popup__form-item_value_place-url"
 );
 const addButtonNode = document.getElementById("element__add-button");
-const popupPlaceEditorNode = document.getElementById("place__editor");
+const popupPlaceEditorNode = document.getElementById("place-editor");
 const placeEditorCloseButtonNode = document.getElementById(
 	"place__editor_close-button"
 );
@@ -68,6 +68,18 @@ heartIconNodes.forEach(function (element) {
 		ChosenHeartIcon.classList.toggle("element__heart-icon_active");
 	});
 });
+
+const placeImageNodes = document.querySelectorAll(".element__image");
+
+placeImageNodes.forEach(function (element) {
+	element.addEventListener("click", (evt) => {
+		const ChosenPlaceImage = evt.target;
+		ChosenPlaceImage.classList.add("");
+	});
+});
+
+/* opacity 0.9 for images popup */
+
 /* const initialCards = [
 	{
 		name: "Архыз",
