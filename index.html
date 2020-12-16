@@ -150,7 +150,9 @@
 					class="popup__close-button popup__close-button_place_elements"
 					id="place__editor_close-button"
 				></button>
-				<h3 class="popup__heading popup__heading_place_elements">Новое место</h3>
+				<h3 class="popup__heading popup__heading_place_elements">
+					Новое место
+				</h3>
 				<form class="popup__form" name="element__editor">
 					<input
 						class="popup__form-item popup__form-item_place_elements popup__form-item_value_place-name"
@@ -166,10 +168,26 @@
 						placeholder="Ссылка на картинку"
 						required
 					/>
-					<button class="popup__submit-button popup__submit-button_place_elements" type="submit">Создать</button>
+					<button
+						class="popup__submit-button popup__submit-button_place_elements"
+						type="submit"
+						id="popup__submit-button_place_elements"
+					>
+						Создать
+					</button>
 				</form>
 			</div>
 		</div>
+
+		<template class="template">
+			<div class="element">
+				<img src="" alt="" class="element__image" />
+				<div class="element__likes-counter">
+					<h2 class="element__title"></h2>
+					<button type="button" class="element__heart-icon"></button>
+				</div>
+			</div>
+		</template>
 
 		<script src="script/index.js"></script>
 	</body>

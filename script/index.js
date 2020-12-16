@@ -21,6 +21,11 @@ const popupPlaceEditorNode = document.getElementById("place-editor");
 const placeEditorCloseButtonNode = document.getElementById(
 	"place__editor_close-button"
 );
+const createButtonNode = document.getElementById(
+	"popup__submit-button_place_elements"
+);
+const placesContainerElement = document.querySelector(".elements");
+const templateElement = document.querySelector(".template");
 
 function handleEditButtonClick() {
 	popupNode.classList.add("popup_visible");
@@ -63,24 +68,15 @@ function handlePlaceEditorCloseButtonClick() {
 const heartIconNodes = document.querySelectorAll(".element__heart-icon");
 
 heartIconNodes.forEach(function (element) {
-	element.addEventListener("click", (evt) => {
-		const ChosenHeartIcon = evt.target;
+	element.addEventListener("click", (event) => {
+		const ChosenHeartIcon = event.target;
 		ChosenHeartIcon.classList.toggle("element__heart-icon_active");
 	});
 });
 
 const placeImageNodes = document.querySelectorAll(".element__image");
 
-placeImageNodes.forEach(function (element) {
-	element.addEventListener("click", (evt) => {
-		const ChosenPlaceImage = evt.target;
-		ChosenPlaceImage.classList.add("");
-	});
-});
-
-/* opacity 0.9 for images popup */
-
-/* const initialCards = [
+const initialCards = [
 	{
 		name: "Архыз",
 		link:
@@ -111,4 +107,41 @@ placeImageNodes.forEach(function (element) {
 		link:
 			"https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
 	},
-]; */
+];
+
+function renderList() {
+	const elements = initialCards.map(createElement);
+	placesContainerElement.append(...elements);
+}
+
+function createElement(element) {
+	const newElement = templateElement.content.cloneNode(true);
+	const elementTitle = newElement.querySelector(".element__title");
+	const elementImage = newElement.querySelector(".element__image");
+	elementTitle.textContent = element.name;
+	elementImage.src = element.link;
+	return newElement;
+}
+
+function handleCreateButtonClick() {
+	createButtonNode.addEventListener("click", addElement);
+	handleCloseButtonClick();
+}
+
+function addElement(event) {
+	event.preventDefault();
+	const placeName = popupPlaceNameNode.value;
+	const placeUrl = popupPlaceUrlNode.value;
+	const newPlace = createElement({ name: placeName, url: placeUrl });
+	placesContainerElement.prepend(newPlace);
+	popupPlaceNameNode.value = "";
+	popupPlaceUrlNode.value = "";
+}
+
+function deleteElement(event) {
+	const chosenElement = event.target.closest(".element");
+	chosenElement.remove();
+}
+
+renderList();
+handleCreateButtonClick();
