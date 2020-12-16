@@ -138,10 +138,22 @@ function addElement(event) {
 	popupPlaceUrlNode.value = "";
 }
 
+/* const removeButtonNode = document.querySelector(".element__remove-button");
+removeButtonNode.addEventListener("click", deleteElement); */
+
 function deleteElement(event) {
 	const chosenElement = event.target.closest(".element");
 	chosenElement.remove();
 }
+
+/*
+1. не работает deleteElement
+2. не добавляются новые елементы (только title)
+3. кнопки не кликабельны на новых карточках из массива
+4. как сделал попап для картинки (верт и горизонт)
+5. почему ломаются стили для карточек(border-radius)
+6. разобраться с createElement и addElement
+*/
 
 renderList();
 handleCreateButtonClick();
