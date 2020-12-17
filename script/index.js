@@ -28,6 +28,10 @@ const createButtonNode = document.getElementById(
 const placesContainerElement = document.querySelector(".elements");
 const templateElement = document.querySelector(".template");
 
+const imageViewerCloseButtonNode = document.getElementById(
+	"image-viewer_close-button"
+);
+
 function handleEditButtonClick() {
 	popupNode.classList.add("popup_visible");
 	popupNameInput.value = profileNameNode.textContent;
@@ -153,10 +157,17 @@ document.addEventListener("click", (event) => {
 
 function openImageViewer(event) {
 	imagePopupNode.classList.add("popup_visible");
-
 	const image = document.querySelector("#element__image_viewer");
-
 	image.src = event.target.src;
+}
+
+imageViewerCloseButtonNode.addEventListener(
+	"click",
+	handleimageViewerCloseButtonClick
+);
+
+function handleimageViewerCloseButtonClick() {
+	imagePopupNode.classList.remove("popup_visible");
 }
 
 document.addEventListener("click", (event) => {
