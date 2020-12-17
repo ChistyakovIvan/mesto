@@ -1,5 +1,6 @@
 const editButtonNode = document.querySelector(".profile__edit-button");
 const popupNode = document.getElementById("profile-editor");
+const imagePopupNode = document.getElementById("image-viewer");
 const formNode = document.querySelector(".popup__form");
 const popupCloseButtonNode = document.getElementById(
 	"profile__editor_close-button"
@@ -120,6 +121,7 @@ function createElement(element) {
 	const elementImage = newElement.querySelector(".element__image");
 	elementTitle.textContent = element.name;
 	elementImage.src = element.link;
+	elementImage.alt = element.name;
 	return newElement;
 }
 
@@ -132,29 +134,47 @@ function addElement(event) {
 	event.preventDefault();
 	const placeName = popupPlaceNameNode.value;
 	const placeUrl = popupPlaceUrlNode.value;
-	const newPlace = createElement({ name: placeName, url: placeUrl });
+	const newPlace = createElement({ name: placeName, link: placeUrl });
 	placesContainerElement.prepend(newPlace);
 	popupPlaceNameNode.value = "";
 	popupPlaceUrlNode.value = "";
 }
 
-/* const removeButtonNode = document.querySelector(".element__remove-button");
-removeButtonNode.addEventListener("click", deleteElement); */
+const removeButtonNodes = document.querySelectorAll(".element__remove-button");
+removeButtonNodes.forEach((node) =>
+	node.addEventListener("click", deleteElement)
+);
+
+document.addEventListener("click", (event) => {
+	if (event.target.classList.contains("element__remove-button")) {
+		deleteElement(event);
+	}
+});
+
+function openImageViewer(event) {
+	imagePopupNode.classList.add("popup_visible");
+
+	const image = document.querySelector("#element__image_viewer");
+
+	image.src = event.target.src;
+}
+
+document.addEventListener("click", (event) => {
+	if (event.target.classList.contains("element__image")) {
+		openImageViewer(event);
+	}
+});
 
 function deleteElement(event) {
 	const chosenElement = event.target.closest(".element");
 	chosenElement.remove();
 }
 
-/*
-1. не работает deleteElement
-2. не добавляются новые елементы (без картинки и remove button, только title)
-3. не работает required
-4. кнопки не кликабельны на новых карточках из массива
-5. как сделал попап для картинки (верт и горизонт)
-6. почему ломаются стили для карточек(border-radius)
-7. разобраться с createElement и addElement
-*/
+document
+	.querySelector("#element__editor")
+	.addEventListener("submit", addElement);
 
 renderList();
-handleCreateButtonClick();
+
+/* добавить кнопку закрытия для image-viewer */
+/* дописать стили для image-viewer */
