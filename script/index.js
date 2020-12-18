@@ -164,7 +164,7 @@ function deleteElement(event) {
 
 function openImageViewer(event) {
 	imagePopupNode.classList.add("popup_visible");
-	const image = document.querySelector("#element__image_viewer");
+	const image = document.querySelector("#popup__window_image-viewer");
 	image.src = event.target.src;
 }
 
@@ -188,6 +188,3 @@ document
 	.addEventListener("submit", addElement);
 
 renderList();
-
-/* добавить кнопку закрытия для image-viewer */
-/* дописать стили для image-viewer */
