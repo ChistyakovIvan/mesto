@@ -70,15 +70,6 @@ function handlePlaceEditorCloseButtonClick() {
 	popupPlaceEditorNode.classList.remove("popup_visible");
 }
 
-const heartIconNodes = document.querySelectorAll(".element__heart-icon");
-
-heartIconNodes.forEach(function (element) {
-	element.addEventListener("click", (event) => {
-		const ChosenHeartIcon = event.target;
-		ChosenHeartIcon.classList.toggle("element__heart-icon_active");
-	});
-});
-
 const placeImageNodes = document.querySelectorAll(".element__image");
 
 const initialCards = [
@@ -144,16 +135,32 @@ function addElement(event) {
 	popupPlaceUrlNode.value = "";
 }
 
+const likeButtonNodes = document.querySelectorAll(".element__heart-icon");
+
+document.addEventListener("click", (evt) => {
+	if (evt.target.classList.contains("element__heart-icon")) {
+		addLike(evt);
+	}
+});
+
+function addLike(event) {
+	const targetforLike = event.target.classList.toggle(
+		"element__heart-icon_active"
+	);
+}
+
 const removeButtonNodes = document.querySelectorAll(".element__remove-button");
-removeButtonNodes.forEach((node) =>
-	node.addEventListener("click", deleteElement)
-);
 
 document.addEventListener("click", (event) => {
 	if (event.target.classList.contains("element__remove-button")) {
 		deleteElement(event);
 	}
 });
+
+function deleteElement(event) {
+	const chosenElement = event.target.closest(".element");
+	chosenElement.remove();
+}
 
 function openImageViewer(event) {
 	imagePopupNode.classList.add("popup_visible");
@@ -175,11 +182,6 @@ document.addEventListener("click", (event) => {
 		openImageViewer(event);
 	}
 });
-
-function deleteElement(event) {
-	const chosenElement = event.target.closest(".element");
-	chosenElement.remove();
-}
 
 document
 	.querySelector("#element__editor")

@@ -1,11 +1,15 @@
-/* .popup__window_place_photos {
+.popup__window_place_photos {
 	border-radius: 0;
-	border: 0;
+  border: none;
+  background-color: transparent;
+	min-width: 240px;
+  height: 299px;
+
 }
 
 @media screen and (min-width: 768px) {
 	.popup__window_place_photos {
-
+	
+		height: 540px;
 	}
 }
- */
