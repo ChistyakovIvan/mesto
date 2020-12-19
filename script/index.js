@@ -122,7 +122,6 @@ function createElement(element) {
 
 function handleCreateButtonClick() {
 	createButtonNode.addEventListener("click", addElement);
-	handleCloseButtonClick();
 }
 
 function addElement(event) {
@@ -133,6 +132,7 @@ function addElement(event) {
 	placesContainerElement.prepend(newPlace);
 	popupPlaceNameNode.value = "";
 	popupPlaceUrlNode.value = "";
+	handlePlaceEditorCloseButtonClick();
 }
 
 const likeButtonNodes = document.querySelectorAll(".element__heart-icon");
@@ -150,7 +150,6 @@ function addLike(event) {
 }
 
 const removeButtonNodes = document.querySelectorAll(".element__remove-button");
-
 
 document.addEventListener("click", (event) => {
 	if (event.target.classList.contains("element__remove-button")) {
