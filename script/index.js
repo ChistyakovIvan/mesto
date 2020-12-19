@@ -7,8 +7,8 @@ const popupCloseButtonNode = document.getElementById(
 );
 const profileNameNode = document.querySelector(".profile__name");
 const profileDescriptionNode = document.querySelector(".profile__description");
-let popupNameInput = document.querySelector(".popup__form-item_value_name");
-let popupDescriptionInput = document.querySelector(
+const popupNameInput = document.querySelector(".popup__form-item_value_name");
+const popupDescriptionInput = document.querySelector(
 	".popup__form-item_value_description"
 );
 const popupPlaceNameNode = document.querySelector(
@@ -144,7 +144,7 @@ document.addEventListener("click", (evt) => {
 });
 
 function addLike(event) {
-	const targetforLike = event.target.classList.toggle(
+	event.target.classList.toggle(
 		"element__heart-icon_active"
 	);
 }
