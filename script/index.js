@@ -32,6 +32,19 @@ const imageViewerCloseButtonNode = document.getElementById(
 	"image-viewer_close-button"
 );
 
+const closeButtonNodes = document.querySelectorAll(".popup__close-button");
+
+document.addEventListener("click", (event) => {
+	if (event.target.classList.contains("popup__close-button")) {
+		closePopUp(event);
+	}
+});
+
+function closePopUp(event) {
+	const chosenPopUp = event.target.closest(".popup");
+	chosenPopUp.classList.remove("popup_visible");
+}
+
 function handleEditButtonClick() {
 	popupNode.classList.add("popup_visible");
 	popupNameInput.value = profileNameNode.textContent;
@@ -40,17 +53,11 @@ function handleEditButtonClick() {
 
 editButtonNode.addEventListener("click", handleEditButtonClick);
 
-function handleCloseButtonClick() {
-	popupNode.classList.remove("popup_visible");
-}
-
-popupCloseButtonNode.addEventListener("click", handleCloseButtonClick);
-
 function handleFormSubmit(event) {
 	event.preventDefault();
 	profileNameNode.textContent = popupNameInput.value;
 	profileDescriptionNode.textContent = popupDescriptionInput.value;
-	handleCloseButtonClick();
+	closePopUp();
 }
 
 formNode.addEventListener("submit", handleFormSubmit);
@@ -132,7 +139,7 @@ function addElement(event) {
 	placesContainerElement.prepend(newPlace);
 	popupPlaceNameNode.value = "";
 	popupPlaceUrlNode.value = "";
-	handlePlaceEditorCloseButtonClick();
+	closePopUp();
 }
 
 const likeButtonNodes = document.querySelectorAll(".element__heart-icon");
@@ -144,9 +151,7 @@ document.addEventListener("click", (evt) => {
 });
 
 function addLike(event) {
-	event.target.classList.toggle(
-		"element__heart-icon_active"
-	);
+	event.target.classList.toggle("element__heart-icon_active");
 }
 
 const removeButtonNodes = document.querySelectorAll(".element__remove-button");
@@ -168,15 +173,6 @@ function openImageViewer(event) {
 	image.src = event.target.src;
 	const imageSubtitle = document.querySelector("#popup__image-subtitle");
 	imageSubtitle.textContent = event.target.alt;
-}
-
-imageViewerCloseButtonNode.addEventListener(
-	"click",
-	handleimageViewerCloseButtonClick
-);
-
-function handleimageViewerCloseButtonClick() {
-	imagePopupNode.classList.remove("popup_visible");
 }
 
 document.addEventListener("click", (event) => {
