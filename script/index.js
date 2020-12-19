@@ -151,6 +151,7 @@ function addLike(event) {
 
 const removeButtonNodes = document.querySelectorAll(".element__remove-button");
 
+
 document.addEventListener("click", (event) => {
 	if (event.target.classList.contains("element__remove-button")) {
 		deleteElement(event);
@@ -166,6 +167,8 @@ function openImageViewer(event) {
 	imagePopupNode.classList.add("popup_visible");
 	const image = document.querySelector("#popup__window_image-viewer");
 	image.src = event.target.src;
+	const imageSubtitle = document.querySelector("#popup__image-subtitle");
+	imageSubtitle.textContent = event.target.alt;
 }
 
 imageViewerCloseButtonNode.addEventListener(
