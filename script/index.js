@@ -1,5 +1,6 @@
 const editButtonNode = document.querySelector(".profile__edit-button");
 const popupNode = document.getElementById("profile-editor");
+const popup = document.querySelectorAll(".popup");
 const imagePopupNode = document.getElementById("image-viewer");
 const formNode = document.querySelector(".popup__form");
 const popupCloseButtonNode = document.getElementById(
@@ -33,6 +34,7 @@ const imageViewerCloseButtonNode = document.getElementById(
 );
 
 const closeButtonNodes = document.querySelectorAll(".popup__close-button");
+const openButtonNodes = document.querySelectorAll(".popup__open-button");
 
 document.addEventListener("click", (event) => {
 	if (event.target.classList.contains("popup__close-button")) {
@@ -45,13 +47,25 @@ function closePopUp(event) {
 	chosenPopUp.classList.remove("popup_visible");
 }
 
-function handleEditButtonClick() {
+document.addEventListener("click", (event) => {
+	if (event.target.classList.contains("popup__open-button")) {
+		openPopUp(event);
+	}
+});
+
+function openPopUp(popup) {
+/*   const SelectedPopUp = document.querySelector(".popup");
+  SelectedPopUp.classList.add("popup_visible"); */
+  /* popup.classList.add("popup_visible"); */
+}
+
+/* function handleEditButtonClick() {
 	popupNode.classList.add("popup_visible");
 	popupNameInput.value = profileNameNode.textContent;
 	popupDescriptionInput.value = profileDescriptionNode.textContent;
 }
 
-editButtonNode.addEventListener("click", handleEditButtonClick);
+editButtonNode.addEventListener("click", handleEditButtonClick); */
 
 function handleFormSubmit(event) {
 	event.preventDefault();
@@ -62,11 +76,11 @@ function handleFormSubmit(event) {
 
 formNode.addEventListener("submit", handleFormSubmit);
 
-addButtonNode.addEventListener("click", handleAddButtonClick);
+/* addButtonNode.addEventListener("click", handleAddButtonClick); */
 
-function handleAddButtonClick() {
+/* function handleAddButtonClick() {
 	popupPlaceEditorNode.classList.add("popup_visible");
-}
+} */
 
 placeEditorCloseButtonNode.addEventListener(
 	"click",
@@ -168,7 +182,7 @@ function deleteElement(event) {
 }
 
 function openImageViewer(event) {
-	imagePopupNode.classList.add("popup_visible");
+	openPopUp(imagePopupNode);
 	const image = document.querySelector("#popup__window_image-viewer");
 	image.src = event.target.src;
 	const imageSubtitle = document.querySelector("#popup__image-subtitle");
