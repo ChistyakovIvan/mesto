@@ -1,5 +1,5 @@
 const editButtonNode = document.querySelector(".profile__edit-button");
-const popupNode = document.getElementById("profile-editor");
+const profileEditorNode = document.getElementById("profile-editor");
 const popup = document.querySelectorAll(".popup");
 const imagePopupNode = document.getElementById("image-viewer");
 const formNode = document.querySelector(".popup__form-item");
@@ -33,15 +33,14 @@ const imageViewerCloseButtonNode = document.getElementById(
 	"image-viewer_close-button"
 );
 
+const popUpProfileSubmitButtonNode = document.querySelector(
+	".popup__profile-submit"
+);
+
 const closeButtonNodes = document.querySelectorAll(".popup__close-button");
 const openButtonNodes = document.querySelectorAll(".popup__open-button");
 
 const placeImageNodes = document.querySelectorAll(".element__image");
-
-function renderList() {
-	const elements = initialCards.map(createElement);
-	placesContainerElement.append(...elements);
-}
 
 function createElement(element) {
 	const newElement = templateElement.content.cloneNode(true);
@@ -57,8 +56,20 @@ function createElement(element) {
 	newElement
 		.querySelector(".element__remove-button")
 		.addEventListener("click", deleteElement);
+	newElement
+		.querySelector(".element__image")
+		.addEventListener("click", openImagePopup);
 	return newElement;
 }
+
+/*
+
+Скажите, пожалуйста, можно ли создавать отдельные файлы под каждую функцию? (как с css)
+Я понимаю, что скрипт не самый длинный, но даже 200 строк тяжело читать и в них ориентироваться
+
+Спасибо!
+
+*/
 
 function addElement(event) {
 	event.preventDefault();
@@ -68,56 +79,82 @@ function addElement(event) {
 	placesContainerElement.prepend(newPlace);
 	popupPlaceNameNode.value = "";
 	popupPlaceUrlNode.value = "";
+	closePopUp(event);
 }
 
 createButtonNode.addEventListener("click", addElement);
+
+document
+	.querySelector("#element__editor")
+	.addEventListener("submit", addElement);
 
 function addLike(event) {
 	event.target.classList.toggle("element__heart-icon_active");
 }
 
 function deleteElement(event) {
-	const chosenElement = event.target.closest(".element");
-	chosenElement.remove();
+	event.target.closest(".element").remove();
 }
 
-function togglePopup(e) {
-	e.preventDefault();
-
-	const { classList } = e.target;
-
-	if (classList.contains("element__image")) {
-		document.getElementById("image-viewer").classList.add("popup_visible");
-		const image = document.querySelector("#popup__window_image-viewer");
-		image.src = e.target.src;
-		const imageSubtitle = document.querySelector("#popup__image-subtitle");
-		imageSubtitle.textContent = e.target.alt;
-	}
-
-	if (classList.contains("profile__add-button")) {
-		document.getElementById("place-editor").classList.add("popup_visible");
-	}
-
-	if (classList.contains("profile__edit-button")) {
-		popupNode.classList.add("popup_visible");
+document.addEventListener("click", (event) => {
+	if (event.target.classList.contains("profile__edit-button")) {
 		popupNameInput.value = profileNameNode.textContent;
 		popupDescriptionInput.value = profileDescriptionNode.textContent;
+		openPopUp(profileEditorNode);
 	}
+});
 
-	if (classList.contains("popup__profile-submit")) {
-		profileNameNode.textContent = popupNameInput.value;
-		profileDescriptionNode.textContent = popupDescriptionInput.value;
+document.addEventListener("click", (event) => {
+	if (event.target.classList.contains("profile__add-button")) {
+		openPopUp(popupPlaceEditorNode);
 	}
+});
 
-	if (
-		classList.contains("popup__close-button") ||
-		classList.contains("popup__submit-button")
-	) {
-		document.querySelector(".popup_visible").classList.remove("popup_visible");
-	}
+function openPopUp(popup) {
+	popup.classList.add("popup_visible");
 }
 
-document.addEventListener("click", togglePopup);
+document.addEventListener("click", (event) => {
+	if (event.target.classList.contains("popup__close-button")) {
+		closePopUp(event);
+	}
+});
+
+function closePopUp(event) {
+	const chosenPopUp = event.target.closest(".popup");
+	chosenPopUp.classList.remove("popup_visible");
+}
+
+function handleEditButtonClick() {
+	openPopUp(profileEditorNode);
+	popupNameInput.value = profileNameNode.textContent;
+	popupDescriptionInput.value = profileDescriptionNode.textContent;
+}
+
+editButtonNode.addEventListener("click", handleEditButtonClick);
+
+addButtonNode.addEventListener("click", handleAddButtonClick);
+
+function handleAddButtonClick() {
+	openPopUp(popupPlaceEditorNode);
+}
+
+function openImagePopup(e) {
+	openPopUp(imagePopupNode);
+	const image = document.querySelector("#popup__window_image-viewer");
+	image.src = e.target.src;
+	const imageSubtitle = document.querySelector("#popup__image-subtitle");
+	imageSubtitle.textContent = e.target.alt;
+}
+
+popUpProfileSubmitButtonNode.addEventListener("click", handleFormSubmit);
+
+function handleFormSubmit(event) {
+	event.preventDefault();
+	profileNameNode.textContent = popupNameInput.value;
+	profileDescriptionNode.textContent = popupDescriptionInput.value;
+	closePopUp(event);
+}
 
 const initialCards = [
 	{
@@ -152,8 +189,9 @@ const initialCards = [
 	},
 ];
 
-document
-	.querySelector("#element__editor")
-	.addEventListener("submit", addElement);
+function renderList() {
+	const elements = initialCards.map(createElement);
+	placesContainerElement.append(...elements);
+}
 
 renderList();
