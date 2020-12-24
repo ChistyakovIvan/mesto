@@ -62,14 +62,6 @@ function createElement(element) {
 	return newElement;
 }
 
-/*
-
-Скажите, пожалуйста, можно ли создавать отдельные файлы под каждую функцию? (как с css)
-Я понимаю, что скрипт не самый длинный, но даже 200 строк тяжело читать и в них ориентироваться
-
-Спасибо!
-
-*/
 
 function addElement(event) {
 	event.preventDefault();
@@ -121,17 +113,8 @@ document.addEventListener("click", (event) => {
 });
 
 function closePopUp(event) {
-	const chosenPopUp = event.target.closest(".popup");
-	chosenPopUp.classList.remove("popup_visible");
+	event.target.closest(".popup").classList.remove("popup_visible");
 }
-
-/*
-
-Прошу рассмотреть сохранение ClosePopUp в таком виде.
-Во всех местах при сабмите или клике мы не только закрывает родителя(используя closest),
-но еще и  позволяем не писать лишний код для работы всех popup__close-button
-
-*/
 
 function handleEditButtonClick() {
 	openPopUp(profileEditorNode);
