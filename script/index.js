@@ -42,6 +42,39 @@ const openButtonNodes = document.querySelectorAll(".popup__open-button");
 
 const placeImageNodes = document.querySelectorAll(".element__image");
 
+const initialCards = [
+	{
+		name: "Архыз",
+		link:
+			"https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+	},
+	{
+		name: "Челябинская область",
+		link:
+			"https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+	},
+	{
+		name: "Иваново",
+		link:
+			"https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+	},
+	{
+		name: "Камчатка",
+		link:
+			"https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+	},
+	{
+		name: "Холмогорский район",
+		link:
+			"https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+	},
+	{
+		name: "Байкал",
+		link:
+			"https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+	},
+];
+
 function createElement(element) {
 	const newElement = templateElement.content.cloneNode(true);
 	const elementTitle = newElement.querySelector(".element__title");
@@ -61,7 +94,6 @@ function createElement(element) {
 		.addEventListener("click", openImagePopup);
 	return newElement;
 }
-
 
 function addElement(event) {
 	event.preventDefault();
@@ -146,39 +178,6 @@ function handleFormSubmit(event) {
 	profileDescriptionNode.textContent = popupDescriptionInput.value;
 	closePopUp(event);
 }
-
-const initialCards = [
-	{
-		name: "Архыз",
-		link:
-			"https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-	},
-	{
-		name: "Челябинская область",
-		link:
-			"https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-	},
-	{
-		name: "Иваново",
-		link:
-			"https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-	},
-	{
-		name: "Камчатка",
-		link:
-			"https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-	},
-	{
-		name: "Холмогорский район",
-		link:
-			"https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-	},
-	{
-		name: "Байкал",
-		link:
-			"https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-	},
-];
 
 function renderList() {
 	const elements = initialCards.map(createElement);
