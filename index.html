@@ -63,6 +63,7 @@
 				<form class="popup__form" name="profile__editor">
 					<input
 						class="popup__form-item popup__form-item_value_name"
+						id="popup__form-item_value_name"
 						name="Name"
 						type="text"
 						placeholder="Жак-Ив Кусто"
@@ -70,9 +71,13 @@
 						minlength="2"
 						maxlength="40"
 					/>
-					<span class="popup__form_error" id="profile__name-input_error"></span>
+					<span
+						class="popup__form_error"
+						id="popup__form-item_value_name_error"
+					></span>
 					<input
 						class="popup__form-item popup__form-item_value_description"
+						id="popup__form-item_value_description"
 						name="Description"
 						type="text"
 						placeholder="Исследователь океана"
@@ -82,7 +87,7 @@
 					/>
 					<span
 						class="popup__form_error"
-						id="profile__description-input_error"
+						id="popup__form-item_value_description_error"
 					></span>
 					<button
 						class="popup__submit-button popup__profile-submit"
@@ -107,6 +112,7 @@
 				<form class="popup__form" name="element__editor" id="element__editor">
 					<input
 						class="popup__form-item popup__form-item_place_elements popup__form-item_value_place-name"
+						id="popup__form-item_value_place-name"
 						name="Name"
 						type="text"
 						placeholder="Название"
@@ -114,15 +120,22 @@
 						minlength="2"
 						maxlength="30"
 					/>
-					<span class="popup__form_error" id="place__name-input_error"></span>
+					<span
+						class="popup__form_error"
+						id="popup__form-item_value_place-name_error"
+					></span>
 					<input
 						class="popup__form-item popup__form-item_place_elements popup__form-item_value_place-url"
+						id="popup__form-item_value_place-url"
 						name="Url"
 						type="url"
 						placeholder="Ссылка на картинку"
 						required
 					/>
-					<span class="popup__form_error" id="place__url-input_error"></span>
+					<span
+						class="popup__form_error"
+						id="popup__form-item_value_place-url_error"
+					></span>
 					<button
 						class="popup__submit-button popup__submit-button_place_elements"
 						type="submit"
