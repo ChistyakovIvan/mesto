@@ -184,4 +184,14 @@ function renderList() {
 	placesContainerElement.append(...elements);
 }
 
+function handleOverlayClick(event) {
+	closePopUp(event);
+}
+
+document.addEventListener("click", (event) => {
+	if (event.target.classList.contains("popup")) {
+		handleOverlayClick(event);
+	}
+});
+
 renderList();
