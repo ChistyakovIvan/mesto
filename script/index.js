@@ -194,4 +194,15 @@ document.addEventListener("click", (event) => {
 	}
 });
 
+function handleEscPressOnForm() {
+	const openedPopUp = document.querySelector(".popup_visible");
+	openedPopUp.classList.remove("popup_visible");
+}
+
+document.addEventListener("keyup", (event) => {
+	if (event.key === "Escape") {
+		handleEscPressOnForm(event);
+	}
+});
+
 renderList();
