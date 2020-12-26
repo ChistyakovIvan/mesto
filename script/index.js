@@ -41,6 +41,13 @@ const closeButtonNodes = document.querySelectorAll(".popup__close-button");
 const openButtonNodes = document.querySelectorAll(".popup__open-button");
 
 const placeImageNodes = document.querySelectorAll(".element__image");
+const profileAddButtonNode = document.querySelector(".profile__add-button");
+const profileEditorCloseButtonNode = document.querySelector(
+	"#profile__editor_close-button"
+);
+
+const image = document.querySelector("#popup__window_image-viewer");
+const imageSubtitle = document.querySelector("#popup__image-subtitle");
 
 const initialCards = [
 	{
@@ -103,10 +110,8 @@ function addElement(event) {
 	placesContainerElement.prepend(newPlace);
 	popupPlaceNameNode.value = "";
 	popupPlaceUrlNode.value = "";
-	closePopUp(event);
+	closePopUp(popupPlaceEditorNode);
 }
-
-createButtonNode.addEventListener("click", addElement);
 
 document
 	.querySelector("#element__editor")
@@ -120,33 +125,55 @@ function deleteElement(event) {
 	event.target.closest(".element").remove();
 }
 
-document.addEventListener("click", (event) => {
-	if (event.target.classList.contains("profile__edit-button")) {
-		popupNameInput.value = profileNameNode.textContent;
-		popupDescriptionInput.value = profileDescriptionNode.textContent;
-		openPopUp(profileEditorNode);
-	}
+editButtonNode.addEventListener("click", (event) => {
+	popupNameInput.value = profileNameNode.textContent;
+	popupDescriptionInput.value = profileDescriptionNode.textContent;
+	openPopUp(profileEditorNode);
 });
 
-document.addEventListener("click", (event) => {
-	if (event.target.classList.contains("profile__add-button")) {
-		openPopUp(popupPlaceEditorNode);
-	}
+profileAddButtonNode.addEventListener("click", (event) => {
+	openPopUp(popupPlaceEditorNode);
 });
 
 function openPopUp(popup) {
 	popup.classList.add("popup_visible");
+	document.addEventListener("keyup", (event) => {
+		if (event.key === "Escape") {
+			handleEscPressOnForm(event);
+		}
+	});
+	document.addEventListener("click", (event) => {
+		if (event.target.classList.contains("popup")) {
+			handleOverlayClick(event);
+		}
+	});
 }
 
-document.addEventListener("click", (event) => {
-	if (event.target.classList.contains("popup__close-button")) {
-		closePopUp(event);
-	}
+function closePopUp(popup) {
+	popup.classList.remove("popup_visible");
+	document.removeEventListener("keyup", (event) => {
+		if (event.key === "Escape") {
+			handleEscPressOnForm(event);
+		}
+	});
+	document.removeEventListener("click", (event) => {
+		if (event.target.classList.contains("popup")) {
+			handleOverlayClick(event);
+		}
+	});
+}
+
+profileEditorCloseButtonNode.addEventListener("click", (event) => {
+	closePopUp(profileEditorNode);
 });
 
-function closePopUp(event) {
-	event.target.closest(".popup").classList.remove("popup_visible");
-}
+placeEditorCloseButtonNode.addEventListener("click", (event) => {
+	closePopUp(popupPlaceEditorNode);
+});
+
+imageViewerCloseButtonNode.addEventListener("click", (event) => {
+	closePopUp(imagePopupNode);
+});
 
 function handleEditButtonClick() {
 	openPopUp(profileEditorNode);
@@ -164,19 +191,17 @@ function handleAddButtonClick() {
 
 function openImagePopup(e) {
 	openPopUp(imagePopupNode);
-	const image = document.querySelector("#popup__window_image-viewer");
 	image.src = e.target.src;
-	const imageSubtitle = document.querySelector("#popup__image-subtitle");
 	imageSubtitle.textContent = e.target.alt;
 }
 
-popUpProfileSubmitButtonNode.addEventListener("click", handleFormSubmit);
+popUpProfileSubmitButtonNode.addEventListener("click", handleProfileFormSubmit);
 
-function handleFormSubmit(event) {
+function handleProfileFormSubmit(event) {
 	event.preventDefault();
 	profileNameNode.textContent = popupNameInput.value;
 	profileDescriptionNode.textContent = popupDescriptionInput.value;
-	closePopUp(event);
+	closePopUp(profileEditorNode);
 }
 
 function renderList() {
@@ -185,24 +210,13 @@ function renderList() {
 }
 
 function handleOverlayClick(event) {
-	closePopUp(event);
+	const openedPopUp = document.querySelector(".popup_visible");
+	closePopUp(openedPopUp);
 }
-
-document.addEventListener("click", (event) => {
-	if (event.target.classList.contains("popup")) {
-		handleOverlayClick(event);
-	}
-});
 
 function handleEscPressOnForm() {
 	const openedPopUp = document.querySelector(".popup_visible");
-	openedPopUp.classList.remove("popup_visible");
+	closePopUp(openedPopUp);
 }
-
-document.addEventListener("keyup", (event) => {
-	if (event.key === "Escape") {
-		handleEscPressOnForm(event);
-	}
-});
 
 renderList();
