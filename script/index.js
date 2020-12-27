@@ -48,6 +48,7 @@ const profileEditorCloseButtonNode = document.querySelector(
 
 const image = document.querySelector("#popup__window_image-viewer");
 const imageSubtitle = document.querySelector("#popup__image-subtitle");
+const popupPlaceEditorForm = popupPlaceEditorNode.querySelector(".popup__form");
 
 const initialCards = [
 	{
@@ -108,8 +109,7 @@ function addElement(event) {
 	const placeUrl = popupPlaceUrlNode.value;
 	const newPlace = createElement({ name: placeName, link: placeUrl });
 	placesContainerElement.prepend(newPlace);
-	popupPlaceNameNode.value = "";
-	popupPlaceUrlNode.value = "";
+	popupPlaceEditorForm.reset();
 	setButtonState(createButtonNode, false, validationConfig);
 	closePopUp(popupPlaceEditorNode);
 }
