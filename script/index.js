@@ -110,6 +110,7 @@ function addElement(event) {
 	placesContainerElement.prepend(newPlace);
 	popupPlaceNameNode.value = "";
 	popupPlaceUrlNode.value = "";
+	setButtonState(createButtonNode, false, validationConfig);
 	closePopUp(popupPlaceEditorNode);
 }
 
@@ -137,30 +138,14 @@ profileAddButtonNode.addEventListener("click", (event) => {
 
 function openPopUp(popup) {
 	popup.classList.add("popup_visible");
-	document.addEventListener("keyup", (event) => {
-		if (event.key === "Escape") {
-			handleEscPressOnForm(event);
-		}
-	});
-	document.addEventListener("click", (event) => {
-		if (event.target.classList.contains("popup")) {
-			handleOverlayClick(event);
-		}
-	});
+	document.addEventListener("keyup", handleEscPressOnForm);
+	document.addEventListener("click", handleOverlayClick);
 }
 
 function closePopUp(popup) {
 	popup.classList.remove("popup_visible");
-	document.removeEventListener("keyup", (event) => {
-		if (event.key === "Escape") {
-			handleEscPressOnForm(event);
-		}
-	});
-	document.removeEventListener("click", (event) => {
-		if (event.target.classList.contains("popup")) {
-			handleOverlayClick(event);
-		}
-	});
+	document.removeEventListener("keyup", handleEscPressOnForm);
+	document.removeEventListener("click", handleOverlayClick);
 }
 
 profileEditorCloseButtonNode.addEventListener("click", (event) => {
@@ -210,13 +195,18 @@ function renderList() {
 }
 
 function handleOverlayClick(event) {
-	const openedPopUp = document.querySelector(".popup_visible");
-	closePopUp(openedPopUp);
+	if (event.target.classList.contains("popup")) {
+		const openedPopUp = document.querySelector(".popup_visible");
+		closePopUp(openedPopUp);
+	}
 }
 
-function handleEscPressOnForm() {
-	const openedPopUp = document.querySelector(".popup_visible");
-	closePopUp(openedPopUp);
+function handleEscPressOnForm(event) {
+	if (event.key === "Escape") {
+		const openedPopUp = document.querySelector(".popup_visible");
+		closePopUp(openedPopUp);
+	}
 }
 
+enableValidation(validationConfig);
 renderList();
